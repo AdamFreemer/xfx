@@ -1,11 +1,11 @@
 #include <MIDI.h>
 
 
-//////**** RMC-1 Rev0 ********//////    
-//////**** May 14th, 2015 ****//////  
+//////**** RMC-1 Rev0 Beta5 ********//////    
+//////**** May 23rd, 2015 ****//////  
 //////**** By Adam Freemer ***//////
 
-const int numReadings = 50; // This adjusts the number of array samples, 5 is low, 10 is on the high side
+const int numReadings = 10; // This adjusts the number of array samples, 5 is low, 10 is on the high side
 int readDelay = 100;       // This is the delay in microseconds before the an analog pin reads from the multiplexer
 
 int bit1 = 2;
