@@ -11,8 +11,8 @@ int d1 = 5;
 
 
   // Inits  
-  int led_bright = 255;
-  int led_dim = 15;
+  int led_bright = 0;
+  int led_dim = 255;
   int led_status_leftblue1 = led_dim;
   int led_status_leftblue2 = led_dim;
   int led_status_leftred = led_dim;
@@ -27,7 +27,7 @@ int d1 = 5;
 // analog input inits
 int inputpin = 0;  
 const int numReadings = 3; 
-int midichannel = 0; // Analog input midi channels
+int midichannel = 4; // Analog input midi channels
 int channel = 6; // Button midi channels
 
 // pot 1 inits (fader 1)

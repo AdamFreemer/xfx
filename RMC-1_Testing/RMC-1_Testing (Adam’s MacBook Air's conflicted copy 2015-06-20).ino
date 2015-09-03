@@ -5,7 +5,7 @@
 //////**** May 23rd, 2015 ****//////  
 //////**** By Adam Freemer ***//////
 
-const int numReadings = 13; // This adjusts the number of array samples, 5 is low, 10 is on the high side
+const int numReadings = 20; // This adjusts the number of array samples, 5 is low, 10 is on the high side
 int readDelay = 100;       // This is the delay in microseconds before the an analog pin reads from the multiplexer
 
 int bit1 = 2;
@@ -14,7 +14,6 @@ int bit4 = 0;
 int analogPin0 = 0;
 int analogPin1 = 1;
 int analogPin2 = 2;
-int analogPin3 = 3;
 int select1 = 0;
 int select2 = 0;
 int select3 = 0;
@@ -192,34 +191,6 @@ int current24 = 0;
 
 ////////////////////////////
 
-////// TOP ROW ////////?////
-
-int readings25[numReadings];     
-int myIndex25 = 0;                
-int total25 = 0;                 
-int average25 = 0;             
-int current25 = 0;
-
-int readings26[numReadings];     
-int myIndex26 = 0;                  
-int total26 = 0;                
-int average26 = 0;               
-int current26 = 0;
-
-int readings27[numReadings];  
-int myIndex27 = 0;            
-int total27 = 0;                
-int average27 = 0;        
-int current27 = 0;
-
-int readings28[numReadings];  
-int myIndex28 = 0;                
-int total28 = 0;          
-int average28 = 0;    
-int current28 = 0;
-
-////////////////////////////
-
 void setup()
 {
   // initialize serial communication with computer:
@@ -337,24 +308,7 @@ void setup()
   // initialize all the readings to 0: Pot 24
   for (int thisReading24 = 0; thisReading24 < numReadings; thisReading24++)
     readings24[thisReading24] = 0;  
-  
-  ////// TOP ROW //////////////////
-  
-  // initialize all the readings to 0: Pot 25
-  for (int thisReading25 = 0; thisReading25 < numReadings; thisReading25++)
-    readings25[thisReading25] = 0;    
     
-  // initialize all the readings to 0: Pot 26
-  for (int thisReading26 = 0; thisReading26 < numReadings; thisReading26++)
-    readings26[thisReading26] = 0;      
-
-  // initialize all the readings to 0: Pot 27
-  for (int thisReading27 = 0; thisReading27 < numReadings; thisReading27++)
-    readings27[thisReading27] = 0;      
-
-  // initialize all the readings to 0: Pot 28
-  for (int thisReading28 = 0; thisReading28 < numReadings; thisReading28++)
-    readings28[thisReading28] = 0;     
 }
 
 void loop() {
@@ -395,8 +349,8 @@ void loop() {
   Serial.print(average14); 
   Serial.print(" A15: "); 
   Serial.print(average15);  
-  Serial.print(" A16: xx"); 
-
+  Serial.print(" A16: "); 
+  Serial.print(average16);  
   
   Serial.print("    A17: "); 
   Serial.print(average17);  
@@ -414,16 +368,7 @@ void loop() {
   Serial.print(" A23: "); 
   Serial.print(average23);  
   Serial.print(" A24: "); 
-  Serial.print(average24);  
-  
-  Serial.print("    A25: "); 
-  Serial.print(average25);  
-  Serial.print(" A26: "); 
-  Serial.print(average26); 
-  Serial.print(" A27: "); 
-  Serial.print(average27);  
-  Serial.print(" A28: "); 
-  Serial.println(average28);  
+  Serial.println(average24);  
   
   ///// SELECT KNOB ///////////////////////////
   select1 = analogRead(9);
@@ -431,61 +376,36 @@ void loop() {
   select3 = analogRead(7);
   select4 = analogRead(6);
   
-  if (select1 < 100) {
+  if (select1 > 1000) {
     usbMIDI.sendNoteOn(60, 99, 3);
     usbMIDI.sendNoteOff(61, 0, 3);
     usbMIDI.sendNoteOff(62, 0, 3);
     usbMIDI.sendNoteOff(63, 0, 3);
     selection = 1;
   } 
-  if (select2 < 100) {
+  if (select2 > 1000) {
     usbMIDI.sendNoteOff(60, 0, 3);
     usbMIDI.sendNoteOn(61, 99, 3);
     usbMIDI.sendNoteOff(62, 0, 3);
     usbMIDI.sendNoteOff(63, 0, 3);
     selection = 2;
   }
-  if (select3 < 100) {
+  if (select3 > 1000) {
     usbMIDI.sendNoteOff(60, 0, 3);
     usbMIDI.sendNoteOff(61, 0, 3);
     usbMIDI.sendNoteOn(62, 99, 3);
     usbMIDI.sendNoteOff(63, 0, 3);
     selection = 3;
   }
-  if (select4 < 100) {
+  if (select4 > 1000) {
     usbMIDI.sendNoteOff(60, 0, 3);
     usbMIDI.sendNoteOff(61, 0, 3);
     usbMIDI.sendNoteOff(62, 0, 3);
     usbMIDI.sendNoteOn(63, 99, 3);
     selection = 4;
   }
- 
+  
   ///////////////////////////////////////////////  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   ///// ROW ONE /////////////////////////////////
@@ -745,21 +665,21 @@ void loop() {
   current15 = average15;
   
   ///// FILTER //////
-//  digitalWrite(bit1, HIGH);
-//  digitalWrite(bit2, HIGH);
-//  digitalWrite(bit4, HIGH);
-//  delayMicroseconds(readDelay);
-//  total16 = total16 - readings16[myIndex16];   
-//  readings16[myIndex16] = analogRead(analogPin0); 
-//  total16 = total16 + readings16[myIndex16];       
-//  myIndex16 = myIndex16 + 1;                    
-//  if (myIndex16 >= numReadings) myIndex16 = 0;                           
-//  average16 = (total16 / (numReadings*8)); 
-//  if (average16 != current16) {
-//    usbMIDI.sendControlChange(16, average16, midi_channel_1);
-//  }
-//  current16 = average16;
-//  
+  digitalWrite(bit1, HIGH);
+  digitalWrite(bit2, HIGH);
+  digitalWrite(bit4, HIGH);
+  delayMicroseconds(readDelay);
+  total16 = total16 - readings16[myIndex16];   
+  readings16[myIndex16] = analogRead(analogPin0); 
+  total16 = total16 + readings16[myIndex16];       
+  myIndex16 = myIndex16 + 1;                    
+  if (myIndex16 >= numReadings) myIndex16 = 0;                           
+  average16 = (total16 / (numReadings*8)); 
+  if (average16 != current16) {
+    usbMIDI.sendControlChange(16, average16, midi_channel_1);
+  }
+  current16 = average16;
+  
   ///////////////////////////////////////////////        
     
    
@@ -883,97 +803,17 @@ void loop() {
   current23 = average23;
   
   ///// UNUSED//////
-  digitalWrite(bit1, HIGH);
-  digitalWrite(bit2, HIGH);
-  digitalWrite(bit4, HIGH);
-  delayMicroseconds(readDelay);
-  total24 = total24 - readings24[myIndex24];   
-  readings24[myIndex24] = analogRead(analogPin2); 
-  total24 = total24 + readings24[myIndex24];       
-  myIndex24 = myIndex24 + 1;                    
-  if (myIndex24 >= numReadings) myIndex24 = 0;                           
-  average24 = (total24 / (numReadings*8)); 
-    if (average24 != current24) {
-    usbMIDI.sendControlChange(24, average24, midi_channel_1);
-  }
-  
+//  digitalWrite(bit1, HIGH);
+//  digitalWrite(bit2, HIGH);
+//  digitalWrite(bit4, HIGH);
+//  delayMicroseconds(readDelay);
+//  total24 = total24 - readings24[myIndex24];   
+//  readings24[myIndex24] = analogRead(analogPin2); 
+//  total24 = total24 + readings24[myIndex24];       
+//  myIndex24 = myIndex24 + 1;                    
+//  if (myIndex24 >= numReadings) myIndex24 = 0;                           
+//  average24 = (total24 / (numReadings*8)); 
 //  
   ///////////////////////////////////////////////      
-
-
-  ///// ROW TOP /////////////////////////////////
-  
-  ///// COLUMN 1 //////
-  digitalWrite(bit1, LOW);
-  digitalWrite(bit2, LOW);
-  digitalWrite(bit4, LOW);
-  delayMicroseconds(readDelay);
-  total25 = total25 - readings25[myIndex25];   
-  readings25[myIndex25] = analogRead(analogPin3); 
-  total25 = total25 + readings25[myIndex25];       
-  myIndex25 = myIndex25 + 1;                    
-  if (myIndex25 >= numReadings) myIndex25 = 0;                           
-  average25 = (total25 / (numReadings*8)); 
-  if (average25 != current25) {
-    usbMIDI.sendControlChange(25, average25, midi_channel_1);
-  }
-  current25 = average25;
-  
-  ///// COLUMN 2 //////
-  digitalWrite(bit1, HIGH);
-  digitalWrite(bit2, LOW);
-  digitalWrite(bit4, LOW);
-  delayMicroseconds(readDelay);
-  total26 = total26 - readings26[myIndex26];   
-  readings26[myIndex26] = analogRead(analogPin3); 
-  total26 = total26 + readings26[myIndex26];       
-  myIndex26 = myIndex26 + 1;                    
-  if (myIndex26 >= numReadings) myIndex26 = 0;                           
-  average26 = (total26 / (numReadings*8)); 
-  if (average26 != current26) {
-    usbMIDI.sendControlChange(26, average26, midi_channel_1);
-  }
-  current26 = average26;
-    
-  ///// COLUMN 3 //////
-  digitalWrite(bit1, LOW);
-  digitalWrite(bit2, HIGH);
-  digitalWrite(bit4, LOW);
-  delayMicroseconds(readDelay);
-  total27 = total27 - readings27[myIndex27];   
-  readings27[myIndex27] = analogRead(analogPin3); 
-  total27 = total27 + readings27[myIndex27];       
-  myIndex27 = myIndex27 + 1;                    
-  if (myIndex27 >= numReadings) myIndex27 = 0;                           
-  average27 = (total27 / (numReadings*8)); 
-  if (average27 != current27) {
-    usbMIDI.sendControlChange(27, average27, midi_channel_1);
-  }
-  current27 = average27;
-    
-  ///// COLUMN 4 //////
-  digitalWrite(bit1, HIGH);
-  digitalWrite(bit2, HIGH);
-  digitalWrite(bit4, LOW);
-  delayMicroseconds(readDelay);
-  total28 = total28 - readings28[myIndex28];   
-  readings28[myIndex28] = analogRead(analogPin3); 
-  total28 = total28 + readings28[myIndex28];       
-  myIndex28 = myIndex28 + 1;                    
-  if (myIndex28 >= numReadings) myIndex28 = 0;                           
-  average28 = (total28 / (numReadings*8)); 
-  if (average28 != current28) {
-    usbMIDI.sendControlChange(28, average28, midi_channel_1);
-  }
-  current28 = average28;
-  
-  ///////////////////////////////////////////////
-
-
-
-
-
-
-
   
 }
