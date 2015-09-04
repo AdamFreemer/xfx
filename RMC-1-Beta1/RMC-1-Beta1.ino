@@ -2,7 +2,7 @@
 
 
 //////**** RMC-1 Rev0 Beta5 ********//////    
-//////**** May 23rd, 2015 ****//////  
+//////**** September 3rd, 2015 ****//////  
 //////**** By Adam Freemer ***//////
 
 const int numReadings = 13; // This adjusts the number of array samples, 5 is low, 10 is on the high side
@@ -431,64 +431,40 @@ void loop() {
   select3 = analogRead(7);
   select4 = analogRead(6);
   
-  if (select1 < 100) {
-    usbMIDI.sendNoteOn(60, 99, 3);
-    usbMIDI.sendNoteOff(61, 0, 3);
-    usbMIDI.sendNoteOff(62, 0, 3);
-    usbMIDI.sendNoteOff(63, 0, 3);
-    selection = 1;
-  } 
-  if (select2 < 100) {
-    usbMIDI.sendNoteOff(60, 0, 3);
-    usbMIDI.sendNoteOn(61, 99, 3);
-    usbMIDI.sendNoteOff(62, 0, 3);
-    usbMIDI.sendNoteOff(63, 0, 3);
-    selection = 2;
-  }
-  if (select3 < 100) {
-    usbMIDI.sendNoteOff(60, 0, 3);
-    usbMIDI.sendNoteOff(61, 0, 3);
-    usbMIDI.sendNoteOn(62, 99, 3);
-    usbMIDI.sendNoteOff(63, 0, 3);
-    selection = 3;
-  }
-  if (select4 < 100) {
-    usbMIDI.sendNoteOff(60, 0, 3);
-    usbMIDI.sendNoteOff(61, 0, 3);
-    usbMIDI.sendNoteOff(62, 0, 3);
-    usbMIDI.sendNoteOn(63, 99, 3);
-    selection = 4;
-  }
+//  if (select1 < 100) {
+//    usbMIDI.sendNoteOn(60, 99, 3);
+//    usbMIDI.sendNoteOff(61, 0, 3);
+//    usbMIDI.sendNoteOff(62, 0, 3);
+//    usbMIDI.sendNoteOff(63, 0, 3);
+//    selection = 1;
+//  } 
+//  if (select2 < 100) {
+//    usbMIDI.sendNoteOff(60, 0, 3);
+//    usbMIDI.sendNoteOn(61, 99, 3);
+//    usbMIDI.sendNoteOff(62, 0, 3);
+//    usbMIDI.sendNoteOff(63, 0, 3);
+//    selection = 2;
+//  }
+//  if (select3 < 100) {
+//    usbMIDI.sendNoteOff(60, 0, 3);
+//    usbMIDI.sendNoteOff(61, 0, 3);
+//    usbMIDI.sendNoteOn(62, 99, 3);
+//    usbMIDI.sendNoteOff(63, 0, 3);
+//    selection = 3;
+//  }
+//  if (select4 < 100) {
+//    usbMIDI.sendNoteOff(60, 0, 3);
+//    usbMIDI.sendNoteOff(61, 0, 3);
+//    usbMIDI.sendNoteOff(62, 0, 3);
+//    usbMIDI.sendNoteOn(63, 99, 3);
+//    selection = 4;
+//  }
  
   ///////////////////////////////////////////////  
   
   
   
-  
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  ///// ROW ONE /////////////////////////////////
+  ///// COLUMN ONE /////////////////////////////////
   
   ///// HIGH //////
   digitalWrite(bit1, LOW);
@@ -533,7 +509,7 @@ void loop() {
   myIndex3 = myIndex3 + 1;                    
   if (myIndex3 >= numReadings) myIndex3 = 0;                           
   average3 = (total3 / (numReadings*8)); 
-  if (average3 != current3) {
+  if ((average3 != current3) && (average3 > 64) && (average3 < 63)) {
     usbMIDI.sendControlChange(3, average3, midi_channel_1);
   }
   current3 = average3;
@@ -549,7 +525,7 @@ void loop() {
   myIndex4 = myIndex4 + 1;                    
   if (myIndex4 >= numReadings) myIndex4 = 0;                           
   average4 = (total4 / (numReadings*8)); 
-  if (average4 != current4) {
+  if ((average4 != current4) && (average4 > 64) && (average4 < 63)) {
     usbMIDI.sendControlChange(4, average4, midi_channel_1);
   }
   current4 = average4;
@@ -557,7 +533,7 @@ void loop() {
   ///////////////////////////////////////////////
     
 
-  ///// ROW TWO /////////////////////////////////
+  ///// COLUMN TWO /////////////////////////////////
   
   ///// HIGH //////
   digitalWrite(bit1, LOW);
@@ -570,7 +546,7 @@ void loop() {
   myIndex5 = myIndex5 + 1;                    
   if (myIndex5 >= numReadings) myIndex5 = 0;                           
   average5 = (total5 / (numReadings*8)); 
-  if (average5 != current5) {
+  if ((average1 != current1) && (average1 > 64) && (average1 < 63)) {
     usbMIDI.sendControlChange(5, average5, midi_channel_1);
   }
   current5 = average5;
@@ -586,7 +562,7 @@ void loop() {
   myIndex6 = myIndex6 + 1;                    
   if (myIndex6 >= numReadings) myIndex6 = 0;                           
   average6 = (total6 / (numReadings*8)); 
-  if (average6 != current6) {
+  if ((average6 != current6) && (average6 > 64) && (average6 < 63)) {
     usbMIDI.sendControlChange(6, average6, midi_channel_1);
   }
   current6 = average6;
@@ -602,7 +578,7 @@ void loop() {
   myIndex7 = myIndex7 + 1;                    
   if (myIndex7 >= numReadings) myIndex7 = 0;                           
   average7 = (total7 / (numReadings*8)); 
-  if (average7 != current7) {
+  if ((average7 != current7) && (average7 > 64) && (average7 < 63)) {
     usbMIDI.sendControlChange(7, average7, midi_channel_1);
   }
   current7 = average7;
@@ -618,14 +594,16 @@ void loop() {
   myIndex8 = myIndex8 + 1;                    
   if (myIndex8 >= numReadings) myIndex8 = 0;                           
   average8 = (total8 / (numReadings*8)); 
-  if (average8 != current8) {
+  if ((average8 != current8) && (average8 > 64) && (average8 < 63)) {
     usbMIDI.sendControlChange(8, average8, midi_channel_1);
   }
   current8 = average8;
   
   ///////////////////////////////////////////////    
     
-  ///// ROW THREE /////////////////////////////////
+    
+    
+  ///// COLUMN THREE /////////////////////////////////
   
   ///// HIGH //////
   digitalWrite(bit1, LOW);
@@ -638,7 +616,7 @@ void loop() {
   myIndex9 = myIndex9 + 1;                    
   if (myIndex9 >= numReadings) myIndex9 = 0;                           
   average9 = (total9 / (numReadings*8)); 
-  if (average9 != current9) {
+  if ((average9 != current9) && (average9 > 64) && (average9 < 63)) {
     usbMIDI.sendControlChange(9, average9, midi_channel_1);
   }
   current9 = average9;
@@ -654,7 +632,7 @@ void loop() {
   myIndex10 = myIndex10 + 1;                    
   if (myIndex10 >= numReadings) myIndex10 = 0;                           
   average10 = (total10 / (numReadings*8)); 
-  if (average10 != current10) {
+  if ((average10 != current10) && (average10 > 64) && (average10 < 63)) {
     usbMIDI.sendControlChange(10, average10, midi_channel_1);
   }
   current10 = average10;
@@ -670,7 +648,7 @@ void loop() {
   myIndex11 = myIndex11 + 1;                    
   if (myIndex11 >= numReadings) myIndex11 = 0;                           
   average11 = (total11 / (numReadings*8)); 
-  if (average11 != current11) {
+  if ((average11 != current11) && (average11 > 64) && (average11 < 63)) {
     usbMIDI.sendControlChange(11, average11, midi_channel_1);
   }
   current11 = average11;
@@ -686,7 +664,7 @@ void loop() {
   myIndex12 = myIndex12 + 1;                    
   if (myIndex12 >= numReadings) myIndex12 = 0;                           
   average12 = (total12 / (numReadings*8)); 
-  if (average12 != current12) {
+  if ((average12 != current12) && (average12 > 64) && (average12 < 63)) {
     usbMIDI.sendControlChange(12, average12, midi_channel_1);
   }
   current12 = average12;
@@ -694,9 +672,9 @@ void loop() {
   ///////////////////////////////////////////////
     
 
-  ///// ROW FOUR /////////////////////////////////
+  ///// OUTPUTS /////////////////////////////////
   
-  ///// HIGH //////
+  ///// AUX 2 //////
   digitalWrite(bit1, LOW);
   digitalWrite(bit2, LOW);
   digitalWrite(bit4, HIGH);
@@ -712,7 +690,7 @@ void loop() {
   }
   current13 = average13;
   
-  ///// MID //////
+  ///// AUX 1 //////
   digitalWrite(bit1, HIGH);
   digitalWrite(bit2, LOW);
   digitalWrite(bit4, HIGH);
@@ -728,7 +706,7 @@ void loop() {
   }
   current14 = average14;
   
-  ///// LOW //////
+  ///// HEADPHONE //////
   digitalWrite(bit1, LOW);
   digitalWrite(bit2, HIGH);
   digitalWrite(bit4, HIGH);
@@ -744,7 +722,7 @@ void loop() {
   }
   current15 = average15;
   
-  ///// FILTER //////
+  ///// UNUSED //////
 //  digitalWrite(bit1, HIGH);
 //  digitalWrite(bit2, HIGH);
 //  digitalWrite(bit4, HIGH);
@@ -762,8 +740,10 @@ void loop() {
 //  
   ///////////////////////////////////////////////        
     
+    
+    
    
-  ///// CHANNELS /////////////////////////////////
+  ///// COLUMN 4 /////////////////////////////////
   
   ///// ONE //////
   digitalWrite(bit1, LOW);
@@ -776,7 +756,7 @@ void loop() {
   myIndex17 = myIndex17 + 1;                    
   if (myIndex17 >= numReadings) myIndex17 = 0;                           
   average17 = (total17 / (numReadings*8)); 
-  if (average17 != current17) {
+  if ((average17 != current17) && (average17 > 64) && (average17 < 63)) {
     usbMIDI.sendControlChange(17, average17, midi_channel_1);
   }
   current17 = average17;
@@ -792,7 +772,7 @@ void loop() {
   myIndex18 = myIndex18 + 1;                    
   if (myIndex18 >= numReadings) myIndex18 = 0;                           
   average18 = (total18 / (numReadings*8)); 
-  if (average18 != current18) {
+  if ((average18 != current18) && (average18 > 64) && (average18 < 63)) {
     usbMIDI.sendControlChange(18, average18, midi_channel_1);
   }
   current18 = average18;
@@ -808,7 +788,7 @@ void loop() {
   myIndex19 = myIndex19 + 1;                    
   if (myIndex19 >= numReadings) myIndex19 = 0;                           
   average19 = (total19 / (numReadings*8)); 
-  if (average19 != current19) {
+  if ((average19 != current19) && (average19 > 64) && (average19 < 63)) {
     usbMIDI.sendControlChange(19, average19, midi_channel_1);
   }
   current19 = average19;
@@ -824,17 +804,19 @@ void loop() {
   myIndex20 = myIndex20 + 1;                    
   if (myIndex20 >= numReadings) myIndex20 = 0;                           
   average20 = (total20 / (numReadings*8)); 
-  if (average20 != current20) {
+  if ((average20 != current20) && (average20 > 64) && (average20 < 63)) {
     usbMIDI.sendControlChange(20, average20, midi_channel_1);
   }
   current20 = average20;
   
   ///////////////////////////////////////////////
     
+    
 
-  ///// OUTPUTS /////////////////////////////////
+
+  ///// CHANNEL KNOBS /////////////////////////////////
   
-  ///// MASTER //////
+  ///// 1 //////
   digitalWrite(bit1, LOW);
   digitalWrite(bit2, LOW);
   digitalWrite(bit4, HIGH);
@@ -850,7 +832,7 @@ void loop() {
   }
   current21 = average21;
   
-  ///// MONITOR //////
+  ///// 2 //////
   digitalWrite(bit1, HIGH);
   digitalWrite(bit2, LOW);
   digitalWrite(bit4, HIGH);
@@ -866,7 +848,7 @@ void loop() {
   }
   current22 = average22;
   
-  ///// HEADPHONE //////
+  ///// 3 //////
   digitalWrite(bit1, LOW);
   digitalWrite(bit2, HIGH);
   digitalWrite(bit4, HIGH);
@@ -882,7 +864,7 @@ void loop() {
   }
   current23 = average23;
   
-  ///// UNUSED//////
+  ///// 4 //////
   digitalWrite(bit1, HIGH);
   digitalWrite(bit2, HIGH);
   digitalWrite(bit4, HIGH);
