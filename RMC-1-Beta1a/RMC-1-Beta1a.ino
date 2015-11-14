@@ -503,7 +503,7 @@ void loop() {
   myIndex2 = myIndex2 + 1;                    
   if (myIndex2 >= numReadings) myIndex2 = 0;                           
   average2 = (total2 / (numReadings*8)); 
-  if ((average2 != current2) && (average2 > 64) && (average2 < 63)) {
+  if (average2 != current2) {
     usbMIDI.sendControlChange(2, average2, midi_channel_1);
   }
   current2 = average2;
@@ -519,7 +519,7 @@ void loop() {
   myIndex3 = myIndex3 + 1;                    
   if (myIndex3 >= numReadings) myIndex3 = 0;                           
   average3 = (total3 / (numReadings*8)); 
-  if ((average3 != current3) && (average3 > 64) && (average3 < 63)) {
+  if (average3 != current3) {
     usbMIDI.sendControlChange(3, average3, midi_channel_1);
   }
   current3 = average3;
@@ -535,7 +535,7 @@ void loop() {
   myIndex4 = myIndex4 + 1;                    
   if (myIndex4 >= numReadings) myIndex4 = 0;                           
   average4 = (total4 / (numReadings*8)); 
-  if ((average4 != current4) && (average4 > 64) && (average4 < 63)) {
+  if (average4 != current4) {
     usbMIDI.sendControlChange(4, average4, midi_channel_1);
   }
   current4 = average4;
@@ -556,7 +556,7 @@ void loop() {
   myIndex5 = myIndex5 + 1;                    
   if (myIndex5 >= numReadings) myIndex5 = 0;                           
   average5 = (total5 / (numReadings*8)); 
-  if ((average1 != current1) && (average1 > 64) && (average1 < 63)) {
+  if (average5 != current5) {
     usbMIDI.sendControlChange(5, average5, midi_channel_1);
   }
   current5 = average5;
@@ -572,7 +572,7 @@ void loop() {
   myIndex6 = myIndex6 + 1;                    
   if (myIndex6 >= numReadings) myIndex6 = 0;                           
   average6 = (total6 / (numReadings*8)); 
-  if ((average6 != current6) && (average6 > 64) && (average6 < 63)) {
+  if (average6 != current6) {
     usbMIDI.sendControlChange(6, average6, midi_channel_1);
   }
   current6 = average6;
@@ -588,7 +588,7 @@ void loop() {
   myIndex7 = myIndex7 + 1;                    
   if (myIndex7 >= numReadings) myIndex7 = 0;                           
   average7 = (total7 / (numReadings*8)); 
-  if ((average7 != current7) && (average7 > 64) && (average7 < 63)) {
+  if (average7 != current7) {
     usbMIDI.sendControlChange(7, average7, midi_channel_1);
   }
   current7 = average7;
@@ -604,7 +604,7 @@ void loop() {
   myIndex8 = myIndex8 + 1;                    
   if (myIndex8 >= numReadings) myIndex8 = 0;                           
   average8 = (total8 / (numReadings*8)); 
-  if ((average8 != current8) && (average8 > 64) && (average8 < 63)) {
+  if (average8 != current8) {
     usbMIDI.sendControlChange(8, average8, midi_channel_1);
   }
   current8 = average8;
@@ -626,7 +626,7 @@ void loop() {
   myIndex9 = myIndex9 + 1;                    
   if (myIndex9 >= numReadings) myIndex9 = 0;                           
   average9 = (total9 / (numReadings*8)); 
-  if ((average9 != current9) && (average9 > 64) && (average9 < 63)) {
+  if (average9 != current9) {
     usbMIDI.sendControlChange(9, average9, midi_channel_1);
   }
   current9 = average9;
@@ -642,7 +642,7 @@ void loop() {
   myIndex10 = myIndex10 + 1;                    
   if (myIndex10 >= numReadings) myIndex10 = 0;                           
   average10 = (total10 / (numReadings*8)); 
-  if ((average10 != current10) && (average10 > 64) && (average10 < 63)) {
+  if (average10 != current10) {
     usbMIDI.sendControlChange(10, average10, midi_channel_1);
   }
   current10 = average10;
@@ -658,7 +658,7 @@ void loop() {
   myIndex11 = myIndex11 + 1;                    
   if (myIndex11 >= numReadings) myIndex11 = 0;                           
   average11 = (total11 / (numReadings*8)); 
-  if ((average11 != current11) && (average11 > 64) && (average11 < 63)) {
+  if (average11 != current11) {
     usbMIDI.sendControlChange(11, average11, midi_channel_1);
   }
   current11 = average11;
@@ -674,7 +674,7 @@ void loop() {
   myIndex12 = myIndex12 + 1;                    
   if (myIndex12 >= numReadings) myIndex12 = 0;                           
   average12 = (total12 / (numReadings*8)); 
-  if ((average12 != current12) && (average12 > 64) && (average12 < 63)) {
+  if (average12 != current12) {
     usbMIDI.sendControlChange(12, average12, midi_channel_1);
   }
   current12 = average12;
@@ -766,7 +766,7 @@ void loop() {
   myIndex17 = myIndex17 + 1;                    
   if (myIndex17 >= numReadings) myIndex17 = 0;                           
   average17 = (total17 / (numReadings*8)); 
-  if ((average17 != current17) && (average17 > 64) && (average17 < 63)) {
+  if (average17 != current17) {
     usbMIDI.sendControlChange(17, average17, midi_channel_1);
   }
   current17 = average17;
@@ -782,7 +782,7 @@ void loop() {
   myIndex18 = myIndex18 + 1;                    
   if (myIndex18 >= numReadings) myIndex18 = 0;                           
   average18 = (total18 / (numReadings*8)); 
-  if ((average18 != current18) && (average18 > 64) && (average18 < 63)) {
+  if (average18 != current18) {
     usbMIDI.sendControlChange(18, average18, midi_channel_1);
   }
   current18 = average18;
@@ -798,7 +798,7 @@ void loop() {
   myIndex19 = myIndex19 + 1;                    
   if (myIndex19 >= numReadings) myIndex19 = 0;                           
   average19 = (total19 / (numReadings*8)); 
-  if ((average19 != current19) && (average19 > 64) && (average19 < 63)) {
+  if (average19 != current19) {
     usbMIDI.sendControlChange(19, average19, midi_channel_1);
   }
   current19 = average19;
@@ -814,7 +814,7 @@ void loop() {
   myIndex20 = myIndex20 + 1;                    
   if (myIndex20 >= numReadings) myIndex20 = 0;                           
   average20 = (total20 / (numReadings*8)); 
-  if ((average20 != current20) && (average20 > 64) && (average20 < 63)) {
+  if (average20 != current20) {
     usbMIDI.sendControlChange(20, average20, midi_channel_1);
   }
   current20 = average20;
